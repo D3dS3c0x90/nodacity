@@ -1,36 +1,23 @@
 require('dotenv').config();
+
+const userRoutes = require('./routes/userRoutes');
 const express = require('express');
 const connectDB = require('./config/db');
+const path = require('path');
 
 const app = express();
-
-const User = require('./models/User');
+// serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 
 // connect database
 connectDB();
 
 const PORT = process.env.PORT;
 
-app.get('/', (req, res) => {
-  res.send('API is running...');
-});
+app.use(express.json()); // to read JSON body
 
-app.get('/add-user', async (req, res) => {
-  try {
-    const user = new User({
-      name: 'Abdelrahman',
-      email: 'abdelrahman@test.com',
-      age: 22
-    });
-
-    await user.save();
-
-    res.send('User saved!');
-  } catch (error) {
-    res.send(error.message);
-  }
-});
+app.use('/users', userRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });
