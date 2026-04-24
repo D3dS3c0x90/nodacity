@@ -12,9 +12,9 @@ form.addEventListener('submit', async (e) => {
 
   try {
     await createUser(data);
-    message.innerText = '✅ User created successfully';
+    showSuccess('User created successfully!');
     form.reset();
   } catch (error) {
-    message.innerText = '❌ Error creating user';
+    showError('Error creating user: ' + error.message);
   }
 });

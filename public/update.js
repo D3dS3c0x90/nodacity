@@ -14,8 +14,8 @@ form.addEventListener('submit', async (e) => {
 
   try {
     await updateUser(id, data);
-    message.innerText = '✏️ Updated successfully';
+    showSuccess('User updated successfully!');
   } catch (error) {
-    message.innerText = '❌ Error updating';
+    showError('Error updating user: ' + error.message);
   }
 });

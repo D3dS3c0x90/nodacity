@@ -20,7 +20,7 @@ async function loadUsers() {
     });
 
   } catch (error) {
-    table.innerHTML = `<tr><td colspan="3">❌ Error loading users</td></tr>`;
+    showError('Error loading users: ' + error.message);
   }
 }
 

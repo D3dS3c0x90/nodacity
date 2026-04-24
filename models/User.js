@@ -11,6 +11,10 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true, // no duplicate emails
   },
+  password: {
+    type: String,
+    required: true,
+  },
   age: {
     type: Number,
   },
